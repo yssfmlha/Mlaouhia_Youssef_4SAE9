@@ -3,16 +3,13 @@ pipeline {
  tools {
  maven 'M2_HOME'
  }
- options {
- timeout(time: 1, unit: 'SECONDS')
- }
  environment {
  APP_ENV = "DEV"
  }
  stages {
  stage('Code Checkout') {
  steps {
- git branch: 'master',
+ git branch: 'main',
  url: 'https://github.com/yssfmlha/JobJenkins.git'
  }
  }
