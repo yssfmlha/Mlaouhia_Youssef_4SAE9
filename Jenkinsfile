@@ -1,30 +1,26 @@
 pipeline {
- agent any
- environment {
- APP_ENV = "DEV"
- }
- stages {
- stage('Code Checkout') {
- steps {
- git branch: 'main',
- url: 'https://github.com/yssfmlha/JobJenkins.git'
- }
- }
- stage('Code Build') {
- steps {
- sh 'mvn install -Dmaven.test.skip=true'
- }
- }
- }
- post {
- always {
- echo "======always======"
- }
- success {
- echo "=====pipeline executed successfully ====="
- }
- failure {
- echo "======pipeline execution failed======"
- }
- }
- }
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out repository...'
+                checkout scm
+            }
+        }
+
+        stage('Run Commands') {
+            steps {
+                echo 'Running pipeline commands...'
+                // Example shell command
+                sh 'echo "Hello from Ubuntu VM!"'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished!'
+        }
+    }
+}
