@@ -1,10 +1,14 @@
 package tn.esprit.studentmanagement;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestComponent;
 
-@TestComponent
+@SpringBootTest
+@EnableAutoConfiguration(exclude = {
+        org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.class,
+        org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration.class
+})
 class StudentManagementApplicationTests {
 
     @Test
