@@ -20,8 +20,13 @@ pipeline{
  		}
 		stage('Code Package'){
 			steps{
-				sh'mvn package'
+				sh 'mvn package'
 			}
+		}
+		stage('SonarQube Analysis'){
+		    steps{
+		        sh 'mvn sonar:sonar'
+		    }
 		}
 		stage('Docker Build'){
 			steps{
