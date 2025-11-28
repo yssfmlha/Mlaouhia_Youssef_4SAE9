@@ -5,6 +5,7 @@ pipeline{
 	}
 	environment {
  		DOCKER_CREDENTIALS=credentials('docker-hub-creds')
+ 		SONAR_TOKEN=credentials('sonar-token')
  	 }
 	stages {
  		stage('Code Checkout') {
@@ -25,7 +26,12 @@ pipeline{
 		}
 		stage('SonarQube Analysis'){
 		    steps{
-		        sh 'mvn sonar:sonar'
+		        sh """
+                     mvn sonar:sonar \
+                    -Dsonar.projectKey=student-management \
+                    -Dsonar.host.url=http://localhost:9000 \
+                    -Dsonar.token=${SONAR_TOKEN}
+                """
 		    }
 		}
 		stage('Docker Build'){
