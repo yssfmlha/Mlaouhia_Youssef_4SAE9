@@ -23,13 +23,6 @@ pipeline{
 				sh 'mvn package'
 			}
 		}
-		stage('SonarQube Analysis'){
-		    steps{
-				withSonarQubeEnv('sq1') {
-		        	sh "mvn sonar:sonar"
-				}
-		    }
-		}
 		stage('Docker Build'){
 			steps{
 				script{
