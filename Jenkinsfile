@@ -51,6 +51,7 @@ pipeline{
 					sh "kubectl apply -f k8s/spring-deployment.yaml -n devops --validate=false"
 					sh "kubectl apply -f k8s/mysql-deployment.yaml -n devops --validate=false"
 					sh "kubectl apply -f k8s/sonarqube-deployment.yaml -n devops --validate=false"
+					sh "kubectl rollout restart deployment/spring-app -n devops"
 				}
 			}
 		}
